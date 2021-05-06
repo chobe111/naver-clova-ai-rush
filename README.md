@@ -10,20 +10,21 @@
 
 (2) 각 이미지 별로 multi-class 형태의 label을 지니고 있습니다. 이 class는 hierarchy를 띄고 있습니다.
 
-[Image TBA]
+![Figure](https://media.oss.navercorp.com/user/8335/files/06e55980-ae76-11eb-8264-0fda0c5d13a6)
 
-이 이미지는 A_B 카테고리로 분류되어 있으며 이 때 label은 A와 B입니다.
+이 이미지들은 음식_음료_커피 카테고리로 분류되어 있으며 이 때 label은 음식, 음료, 커피 입니다.
 
 # Dataset Detail
-- Dataset ID/개수:
+- Dataset ID/개수: 88 classes, About 22600 images
 - Dataset 구성:
+
 - Label 구성: 기본적으로 ID 개수 만큼의 dimension을 가지는 one-hot vector로 구성이 됩니다. 예를 들어 그림 1의 label은 이 될 것입니다.
 - Number of given Few-shot Images:
 - Pretrained Dataset: 본 문제에서는 Few-shot으로 주어지는 이미지 외에 ImageNet 데이터셋을 추가로 활용하는 것이 가능합니다.
-- Full Data Hierarchy
+
 
 # Code spec
-- 이미지 한장을 입력으로 받아 label 개수 만큼의 dimension의 binary one-hot vector를 출력.
+- 이미지 한장을 입력으로 받아 label 개수 만큼의 dimension (88) 의 binary one-hot vector를 출력.
 
 # Measuring
 
