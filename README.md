@@ -5,9 +5,13 @@
 # Introduction
 
 이 문제는 실제 마이박스에서 수집된 이미지 테마들을 분류하는 문제입니다. 이 문제의 특성은 아래와 같습니다.
+
 (1) Few-shot classification 문제입니다.
+
 (2) 각 이미지 별로 multi-class 형태의 label을 지니고 있습니다. 이 class는 hierarchy를 띄고 있습니다.
+
 [Image TBA]
+
 이 이미지는 A_B 카테고리로 분류되어 있으며 이 때 label은 A와 B입니다.
 
 # Dataset Detail
