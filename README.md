@@ -14,7 +14,7 @@
 - Dataset ID/개수:
 - Dataset 구성:
 - Label 구성: 기본적으로 ID 개수 만큼의 dimension을 가지는 one-hot vector로 구성이 됩니다. 예를 들어 그림 1의 label은 이 될 것입니다.
-- # of given Few-shot Images:
+- Number of given Few-shot Images:
 - Pretrained Dataset: 본 문제에서는 Few-shot으로 주어지는 이미지 외에 ImageNet 데이터셋을 추가로 활용하는 것이 가능합니다.
 - Full Data Hierarchy
 
