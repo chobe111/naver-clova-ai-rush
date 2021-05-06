@@ -15,7 +15,7 @@
 이 이미지들은 음식_음료_커피 카테고리로 분류되어 있으며 이 때 label은 음식, 음료, 커피 입니다.
 
 # Dataset Detail
-- Dataset ID/개수: 88 classes, About 22600 images
+- Dataset ID/개수: 88 classes, About 22,600 images
 - Dataset 구성:
 
 - Label 구성: 기본적으로 ID 개수 만큼의 dimension을 가지는 one-hot vector로 구성이 됩니다. 예를 들어 그림 1의 label은 이 될 것입니다.
