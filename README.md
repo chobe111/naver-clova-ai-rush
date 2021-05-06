@@ -23,7 +23,7 @@
 - Full Data Hierarchy
 
 # Code spec
-- 이미지 한장을 입력으로 받아 label id dimension의 binary one-hot vector를 출력.
+- 이미지 한장을 입력으로 받아 label 개수 만큼의 dimension의 binary one-hot vector를 출력.
 
 # Measuring
 
