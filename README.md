@@ -45,7 +45,7 @@ Note: 점수는 중첨되지는 않습니다.
 
 (0) 참가는 PyTorch (>=1.6, Including TorchVision >= 0.7.0) 으로 진행됩니다.
 
-(1) ImageNet dataset을 사용하기 위해서는 첫째, AIRUSH NSML에 업로드 된 이미지넷 데이터셋을 직접 사용, 두번째로는 pytorch에서 사용되는 official pretrained code 사용, 두 가지 방법이 있습니다. 제출하시는 코드는 운영진에서 검수 가능하니 유의하시기 바랍니다.
+(1) ImageNet dataset을 사용하기 위해서는 첫째, AIRUSH NSML에 업로드 된 이미지넷 데이터셋을 직접 사용, 두번째로는 pytorch에서 사용되는 official pretrained code 사용, 두 가지 방법이 있습니다. Official pretrained code를 사용하신느 경우 코드 내에 download 부분을 확인할 수 있어야 합니다. 임의로 pretrained model을 올리는 행위는 제한됩니다. 제출하시는 코드는 운영진에서 검수 가능하니 유의하시기 바랍니다.
 
 (2) model 은 32bit FP 모델을 사용해 주시기 바랍니다. 이미지 사이즈는 제한이 없습니다.
 
