@@ -6,26 +6,22 @@
 
 이 문제는 실제 마이박스에서 수집된 이미지 테마들을 분류하는 문제입니다. 이 문제의 특성은 아래와 같습니다.
 
-(1) Few-shot classification 문제입니다.
+(1) multi-label classification 문제입니다.
 
-(2) 각 이미지 별로 multi-class 형태의 label을 지니고 있습니다. 이 class는 hierarchy를 띄고 있습니다.
+(2) 각 이미지 별로 multi-class 형태의 label들은 hierarchy를 띄고 있습니다.
 
 ![Figure](https://media.oss.navercorp.com/user/8335/files/06e55980-ae76-11eb-8264-0fda0c5d13a6)
 
 이 이미지들은 음식_음료_커피 카테고리로 분류되어 있으며 이 때 label은 음식, 음료, 커피 입니다.
 
 # Dataset Detail
-- Dataset ID/개수: 88 classes, About 22,600 images
-- Dataset 구성:
+- Dataset ID/개수: 107 classes, About 7,300 training images 2,300 testing images.
 
-- Label 구성: 기본적으로 ID 개수 만큼의 dimension을 가지는 one-hot vector로 구성이 됩니다. 예를 들어 그림 1의 label은 이 될 것입니다.
-- Number of given Few-shot Images:
-- Pretrained Dataset: 본 문제에서는 Few-shot으로 주어지는 이미지 외에 ImageNet 데이터셋을 추가로 활용하는 것이 가능합니다.
+- Label 구성: 코드 참조: https://open.oss.navercorp.com/airush2021/1-3/issues/1
 
 
 # Code spec
-- 이미지 한장을 입력으로 받아 label 개수 만큼의 dimension (88) 의 binary one-hot vector를 출력.
-
+- 이미지 한장을 입력으로 받아 multi-class label 출력 - 자세한 내용은 코드 참조. (max 3개)
 # Measuring
 
 본 문제에서는 실제 application에서 활용을 하기 위한 특화된 measuring을 제공합니다. 각 이미지는 0~1 사이의 실수 값으로 measuring 됩니다.
@@ -44,9 +40,7 @@ Note: 점수는 중첨되지는 않습니다.
 
 # Requirements and warning
 
-(0) 참가는 PyTorch (>=1.6, Including TorchVision >= 0.7.0) 으로 진행됩니다.
-
-(1) ImageNet dataset을 사용하기 위해서는 첫째, AIRUSH NSML에 업로드 된 이미지넷 데이터셋을 직접 사용, 두번째로는 pytorch에서 사용되는 official pretrained code 사용, 두 가지 방법이 있습니다. Official pretrained code를 사용하신느 경우 코드 내에 download 부분을 확인할 수 있어야 합니다. 임의로 pretrained model을 올리는 행위는 제한됩니다. 제출하시는 코드는 운영진에서 검수 가능하니 유의하시기 바랍니다.
+(1) 본 문제에서는 ImageNet pre-trained 모델을 추가로 활용하는 것이 가능합니다. 공평성을 위해 본 챌린지에서는 pytorch 공식 pre-trained model과 [timm](https://rwightman.github.io/pytorch-image-models/)에서 지원하는 pre-trained 모델만을 허용합니다. 물론 scratch로 진행하셔도 상관은 없습니다. 그 외의 임의의 pre-trained 모델을 직접 올리는 형태는 제한됩니다. 제출하시는 코드는 운영진에서 검수 가능하니 유의하시기 바랍니다.
 
 (2) model 은 32bit FP 모델을 사용해 주시기 바랍니다. 이미지 사이즈는 제한이 없습니다.
 
