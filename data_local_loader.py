@@ -30,23 +30,51 @@ def get_transform(random_crop=True):
     transform.append(normalize)
     return transforms.Compose(transform)
 
-class CustomDataset(data.Dataset):
-    def __init__(self, is_train=True, root='../1-3-DATA-fin', split=1.0, nsml_test=False):
-
-        if nsml_test:
-            sample_dir = 'test'
-            label_file = 'test_label'
-            self.data_loc = 'test_data'
-        else:
-            sample_dir = 'train'
-            label_file = 'train_label'
-            self.data_loc = 'train_data'
+class TestDataset(data.Dataset):
+    def __init__(self, root='../1-3-DATA-fin'):
 
         self.root = root
-        self.sample_dir = sample_dir
+        self.data_idx = 'data_idx'
 
-        sample_dir = os.path.join(root, self.sample_dir, label_file)
-        with open(sample_dir, 'r') as f:
+        self.sample_dir = 'test'
+        self.data_loc = 'test_data'
+        self.path = os.path.join(root, self.data_loc, self.data_idx)
+
+        with open(self.path, 'r') as f:
+            lines = f.readlines()
+
+        self.samples = []
+        for line in lines:
+            idx = line.split("__")[1].split("_")[0]
+            self.samples.append([line.split(' ')[0].rstrip('\n'), idx])
+
+        self.transform = get_transform(random_crop=False)
+
+    def __getitem__(self, index):
+        '''
+        Here, our problem supposes maximum 3 hierarchy
+        '''
+        path, idx = self.samples[index]
+        path = os.path.join(self.root, self.data_loc, path)
+        sample = self.transform(pil_loader(path=path))
+
+        return torch.LongTensor([int(idx)]), sample
+
+    def __len__(self):
+        return len(self.samples)
+
+class CustomDataset(data.Dataset):
+    def __init__(self, is_train=True, root='../1-3-DATA-fin', split=1.0):
+
+        self.root = root
+        self.data_idx = 'data_idx'
+
+        self.sample_dir = 'train'
+        self.data_loc = 'train_data'
+        self.path = os.path.join(root, self.sample_dir, self.data_loc, self.data_idx)
+
+
+        with open(self.path , 'r') as f:
             lines = f.readlines()
 
         split = int(len(lines) * split)
@@ -84,20 +112,20 @@ class CustomDataset(data.Dataset):
         return len(self.samples)
 
 
-def data_loader(root, phase='train', batch_size=16, split=1.0, nsml_test=True):
+def data_loader(root, phase='train', batch_size=16, split=1.0, submit=True):
     if phase == 'train':
         is_train = True
     elif phase == 'test':
         is_train = False
     else:
         raise KeyError
-    dataset = CustomDataset(is_train=is_train, root=root, split=split, nsml_test=nsml_test)
+
+    if submit:
+        dataset = TestDataset(root=root)
+    else:
+        dataset = CustomDataset(is_train=is_train, root=root, split=split)
     return data.DataLoader(dataset=dataset,
                            batch_size=batch_size,
                            shuffle=is_train)
 
 
-if __name__ == '__main__':
-    dataset = CustomDataset(is_train=True)
-    sample, first_label, second_label, third_label = dataset.__getitem__(0)
-    print(sample)
