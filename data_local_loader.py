@@ -45,8 +45,8 @@ class TestDataset(data.Dataset):
 
         self.samples = []
         for line in lines:
-            idx = line.split("__")[1].split("_")[0]
-            self.samples.append([line.split(' ')[0].rstrip('\n'), idx])
+            idx = line.split("_")[0]
+            self.samples.append([line.rstrip('\n'), idx])
 
         self.transform = get_transform(random_crop=False)
 
