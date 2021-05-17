@@ -41,8 +41,6 @@ Note: 점수는 중첨되지는 않습니다. 순서에 맞게 올려주세요 (
 
 (3) 전체 결과는 총 test image 점수의 평균으로 판정됩니다.
 
-# leaderboard
-https://airush.nsml.navercorp.com/leaderboard/airush2021-1-3
 
 # Requirements and warning
 
