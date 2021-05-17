@@ -41,6 +41,9 @@ Note: 점수는 중첨되지는 않습니다. 순서에 맞게 올려주세요 (
 
 (3) 전체 결과는 총 test image 점수의 평균으로 판정됩니다.
 
+# leaderboard
+https://airush.nsml.navercorp.com/leaderboard/airush2021-1-3
+
 # Requirements and warning
 
 (1) 본 문제에서는 ImageNet pre-trained 모델을 추가로 활용하는 것이 가능합니다. 공평성을 위해 본 챌린지에서는 pytorch 공식 pre-trained model과 [timm](https://rwightman.github.io/pytorch-image-models/)에서 지원하는 pre-trained 모델만을 허용합니다. 물론 scratch로 진행하셔도 상관은 없습니다. 그 외의 임의의 pre-trained 모델을 직접 올리는 형태는 제한됩니다. 제출하시는 코드는 운영진에서 검수 가능하니 유의하시기 바랍니다.
