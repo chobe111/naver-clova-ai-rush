@@ -1,7 +1,3 @@
-from posixpath import realpath
-import torch
-import numpy as np
-
 case = [[0, -1, -1],
         [0, 1, -1],
         [0, 2, -1],
@@ -111,55 +107,40 @@ case = [[0, -1, -1],
         [100, 106, -1]]
 
 
-class AverageMeter(object):
-    """Computes and stores the average and current value"""
+parent1 = {}
+parent2 = {}
+parent3 = {}
 
-    def __init__(self):
-        self.reset()
+for c in case:
+    c0 = c[0]
+    c1 = c[1]
+    c2 = c[2]
 
-    def reset(self):
-        self.val = 0
-        self.avg = 0
-        self.sum = 0
-        self.count = 0
+    if c0 not in parent1:
+        parent1[c0] = [c1]
+    else:
+        parent1[c0] = list(set([c1] + parent1[c0]))
 
-    def update(self, val, n=1):
-        self.val = val
-        self.sum += val * n
-        self.count += n
-        self.avg = self.sum / self.count
+    if c2 == -1:
+        continue
 
+    if c1 not in parent2:
+        parent2[c1] = [c2]
+    else:
+        parent2[c1] = list(set([c2] + parent2[c1]))
 
-def get_acc(pred: torch.Tensor, gt: torch.Tensor):
-    '''
-    pred shape is [batch_size, num_classes]
-    gt shape is [batch_size]
-    '''
-    pred = pred.squeeze().detach().cpu().numpy()
-    gt = gt.cpu().numpy()
+    if c2 not in parent3:
+        parent3[c2] = -1
+    else:
+        continue
 
-    total_data_len = 0
-    total_score = 0
+print("parent1 = ", parent1)
+print("parent2 = ", parent2)
+print("parent3 = ", parent3)
 
-    pred = np.argmax(pred, axis=1)
-
-    for real, syn in zip(gt, pred):
-        total_data_len += 1
-        real_list = case[real]
-        syn_list = case[syn]
-
-        score = 0
-        denom = 0
-        for real2, syn2 in zip(real_list, syn_list):
-            if real2 > -1:
-                denom += 1.0
-                if real2 == syn2:
-                    score += 1.0
-            else:
-                break
-        score = score / denom
-        total_score += score
-
-    assert len(pred) == len(gt)
-
-    return total_score / len(pred)
+parent1 = {0: [1, 2, 3, 4, 5, 6, 11, 17, 88], 23: [35, 24, 25, 26, 27, 28, 29], 39: [40, 44, 46, 47, 49, 50, 51, 52, 53, 54], 57: [58, 60, 63], 65: [
+    66, 67, 68], 69: [70, 74, 78], 82: [89, 83, 84, 87], 90: [91, 92], 93: [96, 97, 98, 99, 94, 95], 100: [101, 102, 103, 104, 105, 106]}
+parent2 = {6: [8, 9, 10, 7], 11: [12, 13, 14, 15, 16], 17: [18, 19, 20, 21, 22], 29: [32, 33, 34, 30, 31], 35: [36, 37, 38], 40: [
+    41, 42, 43], 44: [45], 47: [48], 54: [56, 55], 58: [59], 60: [61, 62], 63: [64], 70: [72, 73, 71], 74: [75, 76, 77], 78: [80, 81, 79]}
+parent3 = {7: -1, 8: -1, 9: -1, 10: -1, 12: -1, 13: -1, 14: -1, 15: -1, 16: -1, 18: -1, 19: -1, 20: -1, 21: -1, 22: -1, 30: -1, 31: -1, 32: -1, 33: -1, 34: -1, 36: -1, 37: -
+           1, 38: -1, 41: -1, 42: -1, 43: -1, 45: -1, 48: -1, 55: -1, 56: -1, 59: -1, 61: -1, 62: -1, 64: -1, 71: -1, 72: -1, 73: -1, 75: -1, 76: -1, 77: -1, 79: -1, 80: -1, 81: -1}

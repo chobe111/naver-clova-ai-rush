@@ -6,5 +6,7 @@ Opencv-python >= 3.4.3.18
 matplotlib >= 2.2.2
 NumPy >= 1.16.4
 scikit-learn >= 0.19.1
+xgboost
 timm
 ptflops
+joblib
